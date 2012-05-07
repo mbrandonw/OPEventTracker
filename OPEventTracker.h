@@ -22,11 +22,26 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Observer these notifications to be notified on the main thread when even tracking starts/stops.
+ */
+extern const struct OPEventTrackerNotifications {
+    __unsafe_unretained NSString *started;
+    __unsafe_unretained NSString *stopped;
+} OPEventTrackerNotifications;
+
 @interface OPEventTracker : NSObject
 
 @property (atomic, assign, readonly, getter=isTracking) BOOL tracking;
 
+/**
+ Call this once at the beginning of your application to start tracking UI events.
+ */
 +(void) startTracking;
+
+/**
+ Threadsafe access to the OPEventTracker singleton.
+ */
 +(id) sharedTracker;
 
 @end

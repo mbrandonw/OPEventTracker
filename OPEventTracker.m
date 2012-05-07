@@ -22,6 +22,11 @@
 
 #import "OPEventTracker.h"
 
+const struct OPEventTrackerNotifications OPEventTrackerNotifications = {
+	.started = @"OPEventTrackerNotificationStarted",
+	.stopped = @"OPEventTrackerNotificationStopped",
+};
+
 @interface OPEventTracker (/**/)
 @property (atomic, assign, readwrite, getter=isTracking) BOOL tracking;
 @end
@@ -48,6 +53,8 @@
     self.tracking = YES;
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:OPEventTrackerNotifications.started object:nil];
+        
         [[NSRunLoop mainRunLoop] performSelector:@selector(eventTrackingStopped)
                                           target:self
                                         argument:nil 
@@ -60,6 +67,8 @@
     self.tracking = NO;
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:OPEventTrackerNotifications.stopped object:nil];
+        
         [[NSRunLoop mainRunLoop] performSelector:@selector(eventTrackingStarted) 
                                           target:self
                                         argument:nil

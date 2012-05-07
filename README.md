@@ -13,6 +13,15 @@ if ([[OPEventTracker sharedTracker] isTracking])
 
 My favorite place to use this is when saving an `NSManagedObjectContext` on a background thread that will then merge into the context on the main thread. In particular, I wait until event tracking stops before doing the save, that way if the merge takes some time it will not be noticeable in the UI.
 
+You can also observe these events using the notifications `OPEventTrackerNotifications.started` and `OPEventTrackerNotifications.stopped`, e.g.
+
+``` objective-c
+[[NSNotificationCenter defaultCenter] addObserver:self 
+                                         selector:@selector(eventsStarted) 
+                                            name:OPEventTrackerNotifications.started 
+                                          object:nil];
+```
+
 ##Installation
 
 We love [CocoaPods](http://github.com/cocoapods/cocoapods), so we recommend you use it.
