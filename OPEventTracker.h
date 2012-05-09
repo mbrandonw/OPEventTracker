@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- Observer these notifications to be notified on the main thread when even tracking starts/stops.
+ Observe these notifications to be notified on the main thread when event tracking starts/stops.
  */
 extern const struct OPEventTrackerNotifications {
     __unsafe_unretained NSString *started;
