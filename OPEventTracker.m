@@ -59,7 +59,7 @@ const struct OPEventTrackerNotifications OPEventTrackerNotifications = {
                                           target:self
                                         argument:nil 
                                            order:0 
-                                           modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]];
+                                           modes:@[NSDefaultRunLoopMode]];
     });
 }
 
@@ -74,7 +74,7 @@ const struct OPEventTrackerNotifications OPEventTrackerNotifications = {
                                         argument:nil
                                            order:0
     #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-                                           modes:[NSArray arrayWithObject:UITrackingRunLoopMode]
+                                           modes:@[UITrackingRunLoopMode]
     #else
                                            modes:[NSArray arrayWithObjects:NSModalPanelRunLoopMode, NSEventTrackingRunLoopMode, nil]
     #endif
