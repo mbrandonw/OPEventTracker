@@ -33,8 +33,6 @@ const struct OPEventTrackerNotifications OPEventTrackerNotifications = {
 
 @implementation OPEventTracker
 
-@synthesize tracking;
-
 +(void) startTracking {
     [[self class] sharedTracker];
 }
